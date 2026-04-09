@@ -1,9 +1,13 @@
-const BASE = 'http://localhost:5000/api';
+const BASE = 'http://localhost:4000/api';
 
-const h = () => ({
-  'Content-Type': 'application/json',
-  ...(localStorage.getItem('jp_token') && { Authorization: `Bearer ${localStorage.getItem('jp_token')}` }),
-});
+const h = () => {
+  const token = localStorage.getItem('jp_token');
+  console.log('Token being sent:', token); // ← add this to debug
+  return {
+    'Content-Type': 'application/json',
+    ...(token && { Authorization: `Bearer ${token}` }),
+  };
+};
 
 const api = {
   register: d => fetch(`${BASE}/auth/register`, { method: 'POST', headers: h(), body: JSON.stringify(d) }).then(r => r.json()),

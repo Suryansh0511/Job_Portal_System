@@ -46,6 +46,22 @@ export default function RecruiterDashboard() {
 
   const updateStatus = async (appId, status) => {
     await api.updateAppStatus(appId, status);
+
+    // If accepted, reduce vacancy by 1
+    if (status === 'Accepted') {
+      const updatedJob = jobs.find(j => j.job_id === selectedJob.job_id);
+      if (updatedJob && updatedJob.job_vac > 0) {
+        await api.updateJob(selectedJob.job_id, {
+          job_name: updatedJob.job_name,
+          job_desc: updatedJob.job_desc,
+          job_type: updatedJob.job_type,
+          job_vac: updatedJob.job_vac - 1,
+          skill_ids: []
+        });
+        fetchJobs(); // refresh jobs to update vacancy count
+      }
+    }
+
     const data = await api.getJobApplicants(selectedJob.job_id);
     setApplicants(Array.isArray(data) ? data : []);
   };
@@ -212,6 +228,6 @@ const S = {
   appName: { color: '#fff', fontWeight: 700, fontSize: 14 },
   appEmail: { color: 'rgba(255,255,255,0.35)', fontSize: 12, marginTop: 3 },
   appResume: { color: '#818cf8', fontSize: 12, marginTop: 3 },
-  statusSelect: { padding: '8px 12px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#fff', fontSize: 13, cursor: 'pointer' },
+  statusSelect: { padding: '8px 12px', background: '#1e1e2e', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 8, color: '#ffffff', fontSize: 13, cursor: 'pointer' },
   empty: { background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, padding: '3rem', textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: 15 },
 };

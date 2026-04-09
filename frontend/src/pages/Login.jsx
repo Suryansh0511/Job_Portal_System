@@ -34,11 +34,6 @@ export default function Login() {
           <h2 style={S.tagline}>Your next opportunity<br />starts here.</h2>
           <p style={S.sub}>Connect with top companies, build your resume, and land the job you deserve.</p>
         </div>
-        <div style={S.stats}>
-          {[['2,400+', 'Jobs Posted'], ['1,200+', 'Companies'], ['8,900+', 'Hired']].map(([n, l]) => (
-            <div key={l} style={S.stat}><span style={S.statNum}>{n}</span><span style={S.statLabel}>{l}</span></div>
-          ))}
-        </div>
       </div>
 
       <div style={S.right}>

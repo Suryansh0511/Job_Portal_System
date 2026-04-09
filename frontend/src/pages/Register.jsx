@@ -42,11 +42,11 @@ export default function Register() {
           {error && <div style={S.error}>{error}</div>}
           <form onSubmit={handleSubmit}>
             <div style={S.row}>
-              <div style={S.field}><label style={S.label}>Full Name *</label><input style={S.input} placeholder="Suryansh Mishra" value={form.name} onChange={set('name')} required /></div>
-              <div style={S.field}><label style={S.label}>Mobile</label><input style={S.input} placeholder="+91 9876543210" value={form.mobile} onChange={set('mobile')} /></div>
+              <div style={S.field}><label style={S.label}>Full Name *</label><input style={S.input} placeholder="Full Name" value={form.name} onChange={set('name')} required /></div>
+              <div style={S.field}><label style={S.label}>Mobile</label><input style={S.input} placeholder="Mobile No." value={form.mobile} onChange={set('mobile')} /></div>
             </div>
             <div style={S.field}><label style={S.label}>Email *</label><input style={S.input} type="email" placeholder="you@email.com" value={form.email} onChange={set('email')} required /></div>
-            <div style={S.field}><label style={S.label}>Address</label><input style={S.input} placeholder="Chennai, India" value={form.address} onChange={set('address')} /></div>
+            <div style={S.field}><label style={S.label}>Address</label><input style={S.input} placeholder="Address" value={form.address} onChange={set('address')} /></div>
             <div style={S.row}>
               <div style={S.field}><label style={S.label}>Username *</label><input style={S.input} placeholder="username" value={form.username} onChange={set('username')} required /></div>
               <div style={S.field}><label style={S.label}>Password *</label><input style={S.input} type="password" placeholder="••••••••" value={form.password} onChange={set('password')} required /></div>
