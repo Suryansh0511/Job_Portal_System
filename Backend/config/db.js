@@ -1,23 +1,23 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  user: 'postgres',
-  password: '1234',
-  database: 'Job_Portal',
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
-pool.connect((err, client) => {
-  if (err) {
-    console.error('❌ DB connection failed:', err.message);
-  } else {
-    // This will tell us EXACTLY which database we are connected to
-    client.query('SELECT current_database()', (err, res) => {
-      console.log('✅ Connected to database:', res.rows[0].current_database);
-      client.release();
-    });
-  }
-});
+// Test connection
+pool.connect()
+  .then(client => {
+    console.log("✅ DB connected");
+    return client
+      .query('SELECT current_database()')
+      .then(res => {
+        console.log('📦 Connected to DB:', res.rows[0].current_database);
+        client.release();
+      });
+  })
+  .catch(err => console.error("❌ DB connection failed:", err.message));
 
 module.exports = pool;
