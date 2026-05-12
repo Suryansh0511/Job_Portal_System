@@ -54,7 +54,7 @@ export default function Register() {
             <div style={S.field}>
               <label style={S.label}>Register as</label>
               <div style={S.roleGrid}>
-                {[['3', '🔍', 'Job Seeker', 'Find and apply to jobs'], ['2', '🏢', 'Recruiter', 'Post jobs & hire talent']].map(([id, icon, title, desc]) => (
+                {[['3', '🔍', 'Job Seeker', 'Find and apply to jobs'], ['2', '🏢', 'Recruiter', 'Post jobs & hire talent'], ['1', '⚙️', 'Admin', 'Manage the platform']].map(([id, icon, title, desc]) => (
                   <div key={id} style={{ ...S.roleCard, ...(form.role_id === id ? S.roleActive : {}) }} onClick={() => setForm({ ...form, role_id: id })}>
                     <span style={S.roleIcon}>{icon}</span>
                     <div><div style={S.roleTitle}>{title}</div><div style={S.roleDesc}>{desc}</div></div>
@@ -93,7 +93,7 @@ const S = {
   field: { marginBottom: 16 },
   label: { display: 'block', color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: 600, marginBottom: 7, letterSpacing: 0.5, textTransform: 'uppercase' },
   input: { width: '100%', padding: '12px 14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, color: '#fff', fontSize: 14, boxSizing: 'border-box', outline: 'none' },
-  roleGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 4 },
+  roleGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginTop: 4 },
   roleCard: { padding: '14px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 10, cursor: 'pointer', display: 'flex', gap: 10, alignItems: 'center', transition: 'all 0.2s' },
   roleActive: { background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.5)' },
   roleIcon: { fontSize: 20 },
